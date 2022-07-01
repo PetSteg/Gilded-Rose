@@ -27,4 +27,4 @@ jobs:
           msbuild.exe csharp.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
 
       - name: Run UnitTests
-        run: dotnet test
+        run: packages\NUnit.ConsoleRunner.3.15.2\tools\nunit3-console.exe  _build\csharp.dll
