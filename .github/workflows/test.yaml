@@ -24,10 +24,10 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe csharp.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
+          msbuild.exe csharp.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Debug" /p:PublishUrl="../_build"
       
       - name: Test Solution
         run: nuget test
 
       - name: Run UnitTests
-        run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  path/to/test.dll
+        run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  bin/debug/ApprovalTests.dll
