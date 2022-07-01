@@ -14,6 +14,7 @@ namespace csharp
         {
             for (var i = 0; i < Items.Count; i++)
             {
+                // AICI ESTE GENERIC
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -24,6 +25,7 @@ namespace csharp
                         }
                     }
                 }
+                // AGED BRIE + BACKSTAGE
                 else
                 {
                     if (Items[i].Quality < 50)
@@ -50,7 +52,8 @@ namespace csharp
                         }
                     }
                 }
-
+                
+                // AICI DECREMENTAM SELL IN PT RESTU
                 if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                 {
                     Items[i].SellIn = Items[i].SellIn - 1;
