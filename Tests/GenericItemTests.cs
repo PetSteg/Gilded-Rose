@@ -55,6 +55,38 @@ namespace csharp.Tests
         }
 
         [Test]
+        public void GenericItemConjured_QualityDecrementsOnceBeforeSellby()
+        {
+            // Given
+            Item greenApple = new Item { Name = "Conjured Green Apple", SellIn = 10, Quality = 10 };
+            Item expectedGreenApple = new Item { Name = "Conjured Green Apple", SellIn = 9, Quality = 8 };
+            IList<Item> Items = new List<Item> { greenApple };
+            GildedRose app = new GildedRose(Items);
+
+            //When
+            app.UpdateQuality();
+
+            // Then
+            Assert.AreEqual(expectedGreenApple.Quality, Items[0].Quality);
+        }
+
+        [Test]
+        public void GenericItemConjured_QualityDecrementsTwiceAfterSellby()
+        {
+            // Given
+            Item greenApple = new Item { Name = "Conjured Green Apple", SellIn = 0, Quality = 10 };
+            Item expectedGreenApple = new Item { Name = "Conjured Green Apple", SellIn = -1, Quality = 6 };
+            IList<Item> Items = new List<Item> { greenApple };
+            GildedRose app = new GildedRose(Items);
+
+            //When
+            app.UpdateQuality();
+
+            // Then
+            Assert.AreEqual(expectedGreenApple.Quality, Items[0].Quality);
+        }
+
+        [Test]
         public void GenericItem_QualityNeverNegativeBeforeSellby()
         {
             // Given

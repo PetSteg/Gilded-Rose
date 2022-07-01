@@ -31,13 +31,16 @@ namespace csharp
 
         private void UpdateGenericItemQuality(Item item)
         {
+            // regular items lose quality as normal, while conjured items lose quality twice as fast
+            int decreaseMultiplier = item.Name.Contains("Conjured") ? 2 : 1;
+
             if (item.SellIn > 0)
             {
-                UpdateQualityBy(item, -1);
+                UpdateQualityBy(item, -1 * decreaseMultiplier);
             }
             else
             {
-                UpdateQualityBy(item, -2);
+                UpdateQualityBy(item, -2 * decreaseMultiplier);
             }
         }
 
