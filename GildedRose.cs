@@ -1,91 +1,111 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace csharp
 {
     public class GildedRose
     {
         IList<Item> Items;
+
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
         }
 
+        private void UpdateQualityBy(Item item, int quality)
+        {
+            var newQuality = item.Quality + quality;
+
+            if (newQuality > 50)
+            {
+                newQuality = 50;
+            }
+            else if (newQuality < 0)
+            {
+                newQuality = 0;
+            }
+
+            item.Quality = newQuality;
+        }
+
+        private void UpdateGenericItemQuality(Item item)
+        {
+            if (item.SellIn > 0)
+            {
+                UpdateQualityBy(item, -1);
+            }
+            else
+            {
+                UpdateQualityBy(item, -2);
+            }
+        }
+
+        private void UpdateAgedBrieQuality(Item item)
+        {
+            if (item.SellIn > 0)
+            {
+                UpdateQualityBy(item, 1);
+            }
+            else
+            {
+                UpdateQualityBy(item, 2);
+            }
+        }
+
+        private void UpdateBackstagePassesQuality(Item item)
+        {
+            if (item.SellIn > 10)
+            {
+                UpdateQualityBy(item, 1);
+            }
+            else if (item.SellIn > 5)
+            {
+                UpdateQualityBy(item, 2);
+            }
+            else if (item.SellIn > 0)
+            {
+                UpdateQualityBy(item, 3);
+            }
+            else
+            {
+                item.Quality = 0;
+            }
+        }
+
+        private void UpdateSellIn(Item item)
+        {
+            if (item.Name != "Sulfuras, Hand of Ragnaros")
+            {
+                item.SellIn--;
+            }
+        }
+
+        private void UpdateQuality(Item item)
+        {
+            switch (item.Name)
+            {
+                case "Aged Brie":
+                    UpdateAgedBrieQuality(item);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    UpdateBackstagePassesQuality(item);
+                    break;
+                case "Sulfuras, Hand of Ragnaros":
+                    // Do nothing
+                    break;
+                default:
+                    UpdateGenericItemQuality(item);
+                    break;
+            }
+        }
+
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                // AICI ESTE GENERIC
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
-                    }
-                }
-                // AGED BRIE + BACKSTAGE
-                else
-                {
-                    if (Items[i].Quality < 50)
-                    {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                // AICI DECREMENTAM SELL IN PT RESTU
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
-                    {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
-                    }
-                }
+                UpdateSellIn(item);
+                UpdateQuality(item);
             }
         }
     }
