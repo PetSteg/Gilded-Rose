@@ -30,4 +30,4 @@ jobs:
         run: nuget test
 
       - name: Run UnitTests
-        run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  bin/debug/ApprovalTests.dll
+        run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  _build/*.dll
