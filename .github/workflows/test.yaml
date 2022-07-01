@@ -16,15 +16,12 @@ jobs:
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
 
-      - name: Create Build Directory
-        run: mkdir _build
-
       - name: Restore Packages
         run: nuget restore csharp.sln
 
       - name: Build Solution
         run: |
-          msbuild.exe csharp.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
+          msbuild.exe csharp.sln /p:platform="Any CPU" /p:configuration="Release"
 
       - name: Run UnitTests
         run: packages\NUnit.ConsoleRunner.3.15.2\tools\nunit3-console.exe  bin\Release\csharp.dll
