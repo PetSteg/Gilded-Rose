@@ -21,7 +21,7 @@ namespace csharp.Tests
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(backstagePasses.SellIn, Items[0].SellIn);
+            Assert.AreEqual(expectedBackstagePasses.SellIn, Items[0].SellIn);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace csharp.Tests
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(backstagePasses.Quality, Items[0].Quality);
+            Assert.AreEqual(expectedBackstagePasses.Quality, Items[0].Quality);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace csharp.Tests
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(backstagePasses.Quality, Items[0].Quality);
+            Assert.AreEqual(expectedBackstagePasses.Quality, Items[0].Quality);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace csharp.Tests
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(backstagePasses.Quality, Items[0].Quality);
+            Assert.AreEqual(expectedBackstagePasses.Quality, Items[0].Quality);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace csharp.Tests
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(backstagePasses.Quality, Items[0].Quality);
+            Assert.AreEqual(expectedBackstagePasses.Quality, Items[0].Quality);
         }
     }
 }

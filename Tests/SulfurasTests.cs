@@ -10,32 +10,32 @@ namespace csharp.Tests
         public void Sulfuras_SellInDoesNotDecrement()
         {
             // Given
-            Item greenApple = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
-            Item expectedGreenApple = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
-            IList<Item> Items = new List<Item> { greenApple };
+            Item Sulfuras = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
+            Item expectedSulfuras = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
+            IList<Item> Items = new List<Item> { Sulfuras };
             GildedRose app = new GildedRose(Items);
 
             //When
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(expectedGreenApple.SellIn, Items[0].SellIn);
+            Assert.AreEqual(expectedSulfuras.SellIn, Items[0].SellIn);
         }
 
         [Test]
         public void Sulfuras_QualityDoesNotDecrement()
         {
             // Given
-            Item greenApple = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
-            Item expectedGreenApple = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
-            IList<Item> Items = new List<Item> { greenApple };
+            Item Sulfuras = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
+            Item expectedSulfuras = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 };
+            IList<Item> Items = new List<Item> { Sulfuras };
             GildedRose app = new GildedRose(Items);
 
             //When
             app.UpdateQuality();
 
             // Then
-            Assert.AreEqual(expectedGreenApple.Quality, Items[0].Quality);
+            Assert.AreEqual(expectedSulfuras.Quality, Items[0].Quality);
         }
     }
 }
