@@ -91,7 +91,7 @@ namespace csharp
                 case "Aged Brie":
                     UpdateAgedBrieQuality(item);
                     break;
-                case "Backstage passes to a TAFKAL80ETC concert":
+                case string name when name.StartsWith("Backstage passes"):
                     UpdateBackstagePassesQuality(item);
                     break;
                 case "Sulfuras, Hand of Ragnaros":
